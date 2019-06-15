@@ -33,26 +33,23 @@ class RESTfulApiExceptionsTranslator {
 
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<Problem> handle(ConstraintViolationException e, HttpServletRequest request) {
-        ThrowableProblem problem = Problem.builder()
-                .withStatus(Status.UNPROCESSABLE_ENTITY)
-                .withTitle("Invalid input data")
-                .withType(URI.create("//itroadlabs/rnd/problems/invalid-input-data"))
-                .withInstance(URI.create(request.getRequestURI()))
-                .with("errors", InvalidInputDataErrors.from(e).getErrors()).build();
-
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .header("Content-Type", "application/problem+json")
-                .body(problem);
+        List<InvalidInputDataErrors.FieldError> errors = InvalidInputDataErrors.from(e).getErrors();
+        return createProblemResponseEntity(request, (List<InvalidInputDataErrors.FieldError>) errors);
     }
 
     @ExceptionHandler({ValidationErrorsException.class})
     public ResponseEntity<Problem> handle(ValidationErrorsException e, HttpServletRequest request) {
+        List<InvalidInputDataErrors.FieldError> errors = InvalidInputDataErrors.from(e).getErrors();
+        return createProblemResponseEntity(request, errors);
+    }
+
+    private ResponseEntity<Problem> createProblemResponseEntity(HttpServletRequest request, List<InvalidInputDataErrors.FieldError> errors) {
         ThrowableProblem problem = Problem.builder()
                 .withStatus(Status.UNPROCESSABLE_ENTITY)
                 .withTitle("Invalid input data")
                 .withType(URI.create("//itroadlabs/rnd/problems/invalid-input-data"))
                 .withInstance(URI.create(request.getRequestURI()))
-                .with("errors", InvalidInputDataErrors.from(e).getErrors()).build();
+                .with("errors", errors).build();
 
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .header("Content-Type", "application/problem+json")
