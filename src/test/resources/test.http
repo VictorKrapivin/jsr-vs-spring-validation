@@ -1,0 +1,18 @@
+POST http://localhost:8080/shopping-cart/checkout
+Content-Type: application/json
+Accept-Language: en/US
+
+{
+  "items":[
+    {
+      "productCatalogCode": "F000222001",
+      "quantity": 10
+    },
+    {
+      "productCatalogCode": "F000222003",
+      "quantity": 0
+    }
+  ]
+}
+
+###
