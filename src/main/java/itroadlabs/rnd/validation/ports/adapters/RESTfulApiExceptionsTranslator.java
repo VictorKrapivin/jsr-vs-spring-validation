@@ -34,7 +34,7 @@ class RESTfulApiExceptionsTranslator {
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<Problem> handle(ConstraintViolationException e, HttpServletRequest request) {
         List<InvalidInputDataErrors.FieldError> errors = InvalidInputDataErrors.from(e).getErrors();
-        return createProblemResponseEntity(request, (List<InvalidInputDataErrors.FieldError>) errors);
+        return createProblemResponseEntity(request, errors);
     }
 
     @ExceptionHandler({ValidationErrorsException.class})

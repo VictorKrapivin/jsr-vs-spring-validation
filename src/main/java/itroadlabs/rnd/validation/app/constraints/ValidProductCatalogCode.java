@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({TYPE, FIELD, PARAMETER})
+@Target({FIELD, PARAMETER})
 @Retention(RUNTIME)
 @Constraint(validatedBy = {ValidProductCatalogCodeValidator.class})
 public @interface ValidProductCatalogCode {
