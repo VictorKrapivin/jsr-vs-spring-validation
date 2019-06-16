@@ -4,7 +4,7 @@ This simple Spring Boot application demonstrates differences between validation 
 * Spring-made validation (`org.springframework.validation.Validator`)
 
 Application is a simple web-service with REST API (actually no back-end store for data, this is not required for demonstration).
-Application domain is also very simple - just create order for chopping cart.
+Application domain is also very simple - just create order for shopping cart.
 
 To run with Spring-made imperative validation approach just use "imperative-way" Spring Profile, or use "aop-way" Spring Profile to run application with JSR-380 validation in AOP style.
 With "imperative-way" profile the `OrderServiceWithSpringImperativeValidation` is used, and `OrderServiceWithAopValidation` is used for "aop-way" profile.
