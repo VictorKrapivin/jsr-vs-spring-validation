@@ -1,6 +1,6 @@
 # Short Description
 This simple Spring Boot application demonstrates differences between validation approaches:
-* Java Beans Validation API (JSR-303 ... JSR-380)
+* [Java Bean Validation API](https://beanvalidation.org/) (JSR-303 ... JSR-380)
 * Spring-made validation (`org.springframework.validation.Validator`)
 
 Application is a simple web-service with REST API (actually no back-end store for data, this is not required for demonstration).
