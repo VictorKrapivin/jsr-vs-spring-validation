@@ -1,6 +1,7 @@
 package itroadlabs.rnd.validation.app.constraints;
 
 import itroadlabs.rnd.validation.app.apimodel.CheckoutShoppingCartRequest;
+import itroadlabs.rnd.validation.app.apimodel.ValidationStepTwo;
 import org.hibernate.validator.HibernateValidator;
 import org.hibernate.validator.HibernateValidatorConfiguration;
 import org.hibernate.validator.cfg.ConstraintMapping;
@@ -34,7 +35,7 @@ class ValidationConfiguration {
         constraintMapping
                 .type(CheckoutShoppingCartRequest.ShoppingCartItem.class)
                 .property("productCatalogCode", FIELD)
-                .constraint(new GenericConstraintDef<>(ValidProductCatalogCode.class))
+                .constraint(new GenericConstraintDef<>(ValidProductCatalogCode.class).groups(ValidationStepTwo.class))
         ;
     }
 }

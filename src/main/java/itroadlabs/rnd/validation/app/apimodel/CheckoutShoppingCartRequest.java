@@ -15,9 +15,9 @@ import java.util.List;
 @Setter
 @Generated("itroadlabs.openapitools.SourceCodeGenerator")
 public class CheckoutShoppingCartRequest {
-    @NotNull
-    @Size(min = 1)
-    @UniqueElements
+    @NotNull(groups = ValidationStepOne.class)
+    @Size(min = 1, groups = ValidationStepOne.class)
+    @UniqueElements(groups = ValidationStepOne.class)
     private List<@Valid ShoppingCartItem> items;
     private String orderNotes;
 
@@ -33,10 +33,10 @@ public class CheckoutShoppingCartRequest {
     @EqualsAndHashCode
     @AllArgsConstructor
     public static class ShoppingCartItem {
-        @NotBlank
+        @NotBlank(groups = ValidationStepOne.class)
         private String productCatalogCode;
-        @NotNull
-        @Min(1)
+        @NotNull(groups = ValidationStepOne.class)
+        @Min(value = 1, groups = ValidationStepOne.class)
         private Integer quantity;
     }
 }

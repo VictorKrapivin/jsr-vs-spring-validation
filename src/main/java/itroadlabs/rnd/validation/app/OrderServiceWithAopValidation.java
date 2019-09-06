@@ -2,6 +2,8 @@ package itroadlabs.rnd.validation.app;
 
 import com.google.common.base.Preconditions;
 import itroadlabs.rnd.validation.app.apimodel.CheckoutShoppingCartRequest;
+import itroadlabs.rnd.validation.app.apimodel.ValidationStepOne;
+import itroadlabs.rnd.validation.app.apimodel.ValidationStepTwo;
 import itroadlabs.rnd.validation.domain.Order;
 import itroadlabs.rnd.validation.domain.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,8 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 
 @Service
-@Validated
 @Profile("aop-way")
+@Validated({ValidationStepOne.class, ValidationStepTwo.class})
 class OrderServiceWithAopValidation implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderFactory orderFactory;
